@@ -4,10 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -48,7 +49,7 @@ class BooksApiApplicationTests {
 		request.setTitle(faker.book().title());
 		request.setAuthor(faker.book().author());
 		request.setGenre(faker.book().genre());
-		request.setPublicationDate(new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2000"));
+		request.setPublicationDate(LocalDate.of(2000, 1, 1));
 		request.setPublisher(faker.book().publisher());
 		request.setCollection(faker.book().title());
 
@@ -79,7 +80,30 @@ class BooksApiApplicationTests {
 	@Test
 	@Order(3)
 	void updateBookTest() throws Exception {
-		fail("Not Implemented");
+
+		var faker = new Faker(Locale.forLanguageTag("pt-BR"));
+
+		var request = new BookRequestDto();
+		request.setTitle(faker.book().title());
+		request.setAuthor(faker.book().author());
+		request.setGenre(faker.book().genre());
+		request.setPublicationDate(LocalDate.of(2000, 1, 1));
+		request.setPublisher(faker.book().publisher());
+		request.setCollection(faker.book().title());
+
+		var result = mockMvc.perform(put("/api/books/" + id).contentType("application/json")
+				.content(objectMapper.writeValueAsString(request))).andExpect(status().isOk()).andReturn();
+
+		var content = result.getResponse().getContentAsString(StandardCharsets.UTF_8);
+
+		var response = objectMapper.readValue(content, BookResponseDto.class);
+
+		assertEquals(response.getId(), id);
+		assertEquals(response.getTitle(), request.getTitle());
+		assertEquals(response.getAuthor(), request.getAuthor());
+		assertEquals(response.getGenre(), request.getGenre());
+		assertEquals(response.getPublisher(), request.getPublisher());
+		assertEquals(response.getCollection(), request.getCollection());
 	}
 
 	@Test

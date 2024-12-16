@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dtos.BookRequestDto;
 import com.example.demo.dtos.BookResponseDto;
-import com.example.demo.repositories.BookRepository;
 import com.example.demo.services.interfaces.BookDomainService;
 
 @RestController
@@ -32,8 +31,7 @@ public class BookController {
 
 	@PutMapping("{id}")
 	public BookResponseDto put(@PathVariable UUID id, @RequestBody BookRequestDto request) {
-		// TODO
-		return null;
+		return bookDomainService.update(id, request);
 	}
 
 	@DeleteMapping("{id}")

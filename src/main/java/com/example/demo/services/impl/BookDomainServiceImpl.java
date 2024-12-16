@@ -35,8 +35,18 @@ public class BookDomainServiceImpl implements BookDomainService {
 
 	@Override
 	public BookResponseDto update(UUID id, BookRequestDto request) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		var book = bookRepository.findById(id).get();
+		
+		book.setId(id);
+		book.setTitle(request.getTitle());
+		book.setAuthor(request.getAuthor());
+		book.setGenre(request.getGenre());
+		book.setPublicationDate(request.getPublicationDate());
+		book.setPublisher(request.getPublisher());
+		book.setCollection(request.getCollection());
+		
+		return modelMapper.map(book, BookResponseDto.class);
 	}
 
 	@Override

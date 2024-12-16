@@ -1,6 +1,6 @@
 package com.example.demo.entities;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -22,7 +22,7 @@ public class Book {
 	private String genre;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-	private Date publicationDate;
+	private LocalDate publicationDate;
 	private String publisher;
 	private String collection;
 }
