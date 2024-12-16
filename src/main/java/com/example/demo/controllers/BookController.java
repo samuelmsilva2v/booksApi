@@ -36,8 +36,7 @@ public class BookController {
 
 	@DeleteMapping("{id}")
 	public String delete(@PathVariable UUID id) {
-		// TODO
-		return null;
+		return bookDomainService.delete(id);
 	}
 
 	@GetMapping("{id}")

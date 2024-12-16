@@ -2,7 +2,8 @@ package com.example.demo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -139,7 +140,12 @@ class BooksApiApplicationTests {
 	@Test
 	@Order(5)
 	void deleteBookTest() throws Exception {
-		fail("Not Implemented");
+		
+		var result = mockMvc.perform(delete("/api/books/" + id)).andExpect(status().isOk()).andReturn();
+		
+		var content = result.getResponse().getContentAsString(StandardCharsets.UTF_8);
+		
+		assertTrue(content.contains("Livro excluído com sucesso!"));
 	}
 
 }

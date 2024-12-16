@@ -52,8 +52,12 @@ public class BookDomainServiceImpl implements BookDomainService {
 
 	@Override
 	public String delete(UUID id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		var book = bookRepository.findById(id).get();
+		
+		bookRepository.delete(book);
+		
+		return "Livro excluído com sucesso!";
 	}
 
 	@Override
