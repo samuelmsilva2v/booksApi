@@ -10,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -24,6 +25,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.example.demo.dtos.BookRequestDto;
 import com.example.demo.dtos.BookResponseDto;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javafaker.Faker;
 
@@ -76,13 +78,12 @@ class BooksApiApplicationTests {
 	@Order(2)
 	void searchBookByIdTest() throws Exception {
 
-		var result = mockMvc.perform(get("/api/books/" + id).contentType("application/json")).andExpect(status().isOk())
-				.andReturn();
-		
+		var result = mockMvc.perform(get("/api/books/" + id)).andExpect(status().isOk()).andReturn();
+
 		var content = result.getResponse().getContentAsString(StandardCharsets.UTF_8);
 
 		var response = objectMapper.readValue(content, BookResponseDto.class);
-		
+
 		assertEquals(response.getId(), id);
 		assertNotNull(response.getTitle());
 		assertNotNull(response.getAuthor());
@@ -124,7 +125,15 @@ class BooksApiApplicationTests {
 	@Test
 	@Order(4)
 	void consultBooksTest() throws Exception {
-		fail("Not Implemented");
+
+		var result = mockMvc.perform(get("/api/books")).andExpect(status().isOk()).andReturn();
+
+		var content = result.getResponse().getContentAsString(StandardCharsets.UTF_8);
+
+		var response = objectMapper.readValue(content, new TypeReference<List<BookResponseDto>>() {
+		});
+
+		response.stream().filter(book -> book.getId().equals(id)).findFirst();
 	}
 
 	@Test

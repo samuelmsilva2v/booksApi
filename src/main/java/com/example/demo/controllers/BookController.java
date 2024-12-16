@@ -47,8 +47,7 @@ public class BookController {
 
 	@GetMapping
 	public List<BookResponseDto> getAll() {
-		// TODO
-		return null;
+		return bookDomainService.getAll();
 	}
 
 }
