@@ -42,8 +42,7 @@ public class BookController {
 
 	@GetMapping("{id}")
 	public BookResponseDto getById(@PathVariable UUID id) {
-		// TODO
-		return null;
+		return bookDomainService.getById(id);
 	}
 
 	@GetMapping

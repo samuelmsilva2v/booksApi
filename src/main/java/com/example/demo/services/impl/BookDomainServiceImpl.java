@@ -57,8 +57,10 @@ public class BookDomainServiceImpl implements BookDomainService {
 
 	@Override
 	public BookResponseDto getById(UUID id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		var book = bookRepository.findById(id).get();
+		
+		return modelMapper.map(book, BookResponseDto.class);
 	}
 
 	@Override

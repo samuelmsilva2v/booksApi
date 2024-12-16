@@ -3,6 +3,7 @@ package com.example.demo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -74,7 +75,21 @@ class BooksApiApplicationTests {
 	@Test
 	@Order(2)
 	void searchBookByIdTest() throws Exception {
-		fail("Not Implemented");
+
+		var result = mockMvc.perform(get("/api/books/" + id).contentType("application/json")).andExpect(status().isOk())
+				.andReturn();
+		
+		var content = result.getResponse().getContentAsString(StandardCharsets.UTF_8);
+
+		var response = objectMapper.readValue(content, BookResponseDto.class);
+		
+		assertEquals(response.getId(), id);
+		assertNotNull(response.getTitle());
+		assertNotNull(response.getAuthor());
+		assertNotNull(response.getGenre());
+		assertNotNull(response.getPublicationDate());
+		assertNotNull(response.getPublisher());
+		assertNotNull(response.getCollection());
 	}
 
 	@Test
