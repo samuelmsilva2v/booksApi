@@ -3,6 +3,7 @@ package com.example.demo.controllers;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,15 +15,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dtos.BookRequestDto;
 import com.example.demo.dtos.BookResponseDto;
+import com.example.demo.repositories.BookRepository;
+import com.example.demo.services.interfaces.BookDomainService;
 
 @RestController
 @RequestMapping("/api/books")
 public class BookController {
+	
+	@Autowired
+	private BookDomainService bookDomainService;
 
 	@PostMapping
 	public BookResponseDto post(@RequestBody BookRequestDto request) {
-		// TODO
-		return null;
+		return bookDomainService.register(request);
 	}
 
 	@PutMapping("{id}")
