@@ -1,0 +1,26 @@
+networks:
+   books-network: 
+      driver: bridge 
+
+services:
+ books-api:
+  build:
+   context: . 
+   dockerfile: Dockerfile
+  ports:
+   - "8080:8080"
+  networks:
+   - books-network
+  depends_on:
+   - postgres
+   
+ postgres: 
+  image: postgres:latest
+  environment: 
+   POSTGRES_USER: postgres
+   POSTGRES_PASSWORD: password
+   POSTGRES_DB: db_books
+  ports:
+   - "5432:5432"
+  networks:
+   - books-network
