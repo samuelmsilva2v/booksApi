@@ -1,6 +1,6 @@
 package com.example.demo.dtos;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -16,7 +16,7 @@ public class BookResponseDto {
 	private String genre;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-	private LocalDate publicationDate;
+	private Date publicationDate;
 	private String publisher;
 	private String collection;
 }

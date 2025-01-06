@@ -10,7 +10,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -53,7 +53,7 @@ class BooksApiApplicationTests {
 		request.setTitle(faker.book().title());
 		request.setAuthor(faker.book().author());
 		request.setGenre(faker.book().genre());
-		request.setPublicationDate(LocalDate.of(2000, 1, 1));
+		request.setPublicationDate(new Date(946684800000L));
 		request.setPublisher(faker.book().publisher());
 		request.setCollection(faker.book().title());
 
@@ -104,7 +104,7 @@ class BooksApiApplicationTests {
 		request.setTitle(faker.book().title());
 		request.setAuthor(faker.book().author());
 		request.setGenre(faker.book().genre());
-		request.setPublicationDate(LocalDate.of(2000, 1, 1));
+		request.setPublicationDate(new Date(946684800000L));
 		request.setPublisher(faker.book().publisher());
 		request.setCollection(faker.book().title());
 
