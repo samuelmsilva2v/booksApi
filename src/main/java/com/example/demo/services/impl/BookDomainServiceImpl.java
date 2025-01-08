@@ -46,6 +46,8 @@ public class BookDomainServiceImpl implements BookDomainService {
 		book.setPublicationDate(request.getPublicationDate());
 		book.setPublisher(request.getPublisher());
 		book.setCollection(request.getCollection());
+		
+		bookRepository.save(book);
 
 		return modelMapper.map(book, BookResponseDto.class);
 	}
