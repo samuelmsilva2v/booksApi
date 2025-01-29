@@ -1,28 +1,89 @@
-# Getting Started
+# Books API
 
-### Reference Documentation
-For further reference, please consider the following sections:
+[🇧🇷 Leia em Português](#api-books)
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/3.4.0/maven-plugin)
-* [Create an OCI image](https://docs.spring.io/spring-boot/3.4.0/maven-plugin/build-image.html)
-* [Spring Data JPA](https://docs.spring.io/spring-boot/3.4.0/reference/data/sql.html#data.sql.jpa-and-spring-data)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/3.4.0/reference/using/devtools.html)
-* [Spring Web](https://docs.spring.io/spring-boot/3.4.0/reference/web/servlet.html)
+API RESTful developed in Spring Boot that provides a CRUD for book management.
 
-### Guides
-The following guides illustrate how to use some features concretely:
+Technologies:
+- **Java 21**
+- **Spring Boot**
+- **Spring Data JPA**
+- **Hibernate**
+- **PostgreSQL**
+- **Swagger**
+- **Lombok**
+- **Model Mapper**
+- **Bean Validation (javax.validation)**
+- **Docker**
 
-* [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
-* [Accessing data with MySQL](https://spring.io/guides/gs/accessing-data-mysql/)
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
+| Método | Endpoint          | Descrição              |
+|--------|-------------------|------------------------|
+| POST   | `/api/books`      | Registers a new book   |
+| GET    | `/api/books`      | Retrieves all books    |
+| GET    | `/api/books/{id}` | Retrieves a book by ID |
+| PUT    | `/api/books/{id}` | Updates a book         |
+| DELETE | `/api/books/{id}` | Deletes a book         |
 
-### Maven Parent overrides
+## Installation:
 
-Due to Maven's design, elements are inherited from the parent POM to the project POM.
-While most of the inheritance is fine, it also inherits unwanted elements like `<license>` and `<developers>` from the parent.
-To prevent this, the project POM contains empty overrides for these elements.
-If you manually switch to a different parent and actually want the inheritance, you need to remove those overrides.
+##### Building the Docker image:
+#### 1. Open the terminal and navigate to the project folder.
+#### 2. Run the following command to create the Docker image:
+```bash
+docker build -t booksapi .
+```
+##### Running the container
+```bash
+docker-compose up -d
+```
 
+#### 3. Access the Swagger documentation: http://localhost:8080/swagger-ui/index.html#
+
+[Frontend repository](https://github.com/samuelmsilva2v/webBooks)
+
+---
+
+# API Books
+
+[🇺🇸 Read in English](#books-api)
+
+API RESTful desenvolvida em Spring Boot que oferece um CRUD para o gerenciamento de livros.
+
+## Tecnologias: 
+- **Java 21**
+- **Spring Boot**
+- **Spring Data JPA**
+- **Hibernate**
+- **PostgreSQL**
+- **Swagger**
+- **Lombok**
+- **Model Mapper**
+- **Bean Validation (javax.validation)**
+- **Docker**
+
+## Endpoints
+
+| Método | Endpoint          | Descrição                    |
+|--------|-------------------|------------------------------|
+| POST   | `/api/books`      | Registra uma nova categoria  |
+| GET    | `/api/books`      | Consulta todas as categorias |
+| GET    | `/api/books/{id}` | Detalha uma categoria por ID |
+| PUT    | `/api/books/{id}` | Atualiza uma categoria       |
+| DELETE | `/api/books/{id}` | Remove uma categoria         |
+
+## Instalação:
+
+##### Construindo a imagem no Docker:
+#### 1. No terminal, navegue até a pasta do projeto.
+#### 2. Execute o comando abaixo para criar a imagem Docker:
+```bash
+docker build -t booksapi .
+```
+##### Executando o container
+```bash
+docker-compose up -d
+```
+
+#### 3. Acesse a documentação no Swagger: http://localhost:8080/swagger-ui/index.html#
+
+[Repositório do front-end](https://github.com/samuelmsilva2v/webBooks)
